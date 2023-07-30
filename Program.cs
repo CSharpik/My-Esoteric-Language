@@ -39,31 +39,31 @@ void Interpret(string text)
 				Interrupt(intcode);
 				break;
 			case '*':
-                if (cells[pos] == 0)
-                {
-                    short flag = 1;
-                    for (short j = (short)(i + 1); j < text.Length; j++)
-                    {
-                        if (text[j] == '*') flag++;
-                        if (text[j] == '&') flag--;
-                        if (flag == 0 && j != text.Length - 1)
-                        { i = (short)(j + 1); break; }
-                    }
-                }
-                break;
-            case '&':
-                if (cells[pos] != 0)
-                {
-                    short flag = 1;
-                    for (short j = (short)(i - 1); j >= 0; j--)
-                    {
-                        if (text[j] == '&') flag++;
-                        if (text[j] == '*') flag--;
-                        if (flag == 0)
-                        { i = j; break; }
-                    }
-                }
-                break;
+		                if (cells[pos] == 0)
+		                {
+		                    short flag = 1;
+		                    for (short j = (short)(i + 1); j < text.Length; j++)
+		                    {
+		                        if (text[j] == '*') flag++;
+		                        if (text[j] == '&') flag--;
+		                        if (flag == 0 && j != text.Length - 1)
+		                        { i = (short)(j + 1); break; }
+		                    }
+		                }
+		                break;
+            		case '&':
+		                if (cells[pos] != 0)
+		                {
+		                    short flag = 1;
+		                    for (short j = (short)(i - 1); j >= 0; j--)
+		                    {
+		                        if (text[j] == '&') flag++;
+		                        if (text[j] == '*') flag--;
+		                        if (flag == 0)
+		                        { i = j; break; }
+		                    }
+		                }
+		                break;
 		}
 	}
 }
@@ -92,7 +92,7 @@ void Interrupt(sbyte code)
 			break;
 		case 3:
 			Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write("VAL => ");
+            		Console.Write("VAL => ");
 			Console.ForegroundColor = ConsoleColor.Cyan;
 			string inp = Console.ReadLine() ?? "0";
 			cells[pos] = short.Parse(inp);
@@ -100,11 +100,11 @@ void Interrupt(sbyte code)
 		case -3:
 			Console.BackgroundColor = ConsoleColor.DarkMagenta;
 			Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("\n-!\n\nTERMINATED\n\n-!\n");
+            		Console.WriteLine("\n-!\n\nTERMINATED\n\n-!\n");
 			Console.ReadKey(true);
 			Environment.Exit(0);
-            break;
-        default:
+            		break;
+        	default:
 			Console.ForegroundColor = ConsoleColor.Blue;
 			Console.WriteLine("\n!- ERROR -!\n");
 			break;
